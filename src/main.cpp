@@ -1,16 +1,23 @@
 #include "stm32f446xx.h"
 #include "gpio.hpp"
 
+using hardware::Pin;
+
+Pin led = Pin::New(GPIOA, Pin::Pins::PIN5);
+
 int main()
 {
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
 
-    GPIOA->MODER |= 1 << PA5.Pin * 2;
+    led.setMode(Pin::Mode::OUTPUT);
 
     while (true)
     {
-        PA5.pGPIO->ODR ^= 1 << 5;
-        for (int i = 0; i < 2000000; i++)
+        led.Value(Pin::State::HIGH);
+        for (int i = 0; i < 200000; i++)
+            ;
+        led.Value(Pin::State::LOW);
+        for (int i = 0; i < 200000; i++)
             ;
     }
 

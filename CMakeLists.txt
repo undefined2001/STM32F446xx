@@ -39,7 +39,10 @@ target_compile_options(${TARGET} PRIVATE
     -mfloat-abi=soft
     -ffunction-sections
     -fdata-sections
-    -Os
+    -Os 
+    -Og 
+    -g3
+    -ggdb
 )
 
 # Set linker options
