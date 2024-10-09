@@ -54,7 +54,7 @@ namespace hardware
         {
 
         };
-        enum class State : uint32_t
+        enum State : uint32_t
         {
             LOW = 0,
             HIGH
@@ -67,8 +67,11 @@ namespace hardware
 
     public:
         static Pin New(GPIO_TypeDef *pGPIO, Pins pin);
+        static void EnablePORT(GPIO_TypeDef *pGPIO);
         void setMode(Mode mode);
-        void Value(State value);
+        void setPupd(Pupd pupd);
+        void Value(uint32_t value);
+        int Value();
     };
 
 } // namespace hardware
